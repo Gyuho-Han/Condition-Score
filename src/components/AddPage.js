@@ -12,6 +12,7 @@ function Home() {
     emoScore: "",
     emoReason: "",
     recomMusic: "",
+    emoProfile: ""
   });
 
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ function Home() {
   const emoScoreRef = useRef();
   const emoReasonRef = useRef();
   const recomMusic = useRef();
+  const emoProfile = useRef();
 
   const onClickBtn = () => {
     navigate(`/`);
@@ -86,7 +88,16 @@ function Home() {
         <h2>프로필 이름</h2>
         <input onChange={onChangeInput} placeholder="이름을 작성해주세요" type="text" name="userName" />
         <h2>프로필 이모지</h2>
+        <select name="userEmotion" className="userEmotion" onChange={onChangeInput}>
+          <option value="happy" className="userEmotionOption">😄</option>
+          <option value="excitied" className="userEmotionOption">😆</option>
+          <option value="cry" className="userEmotionOption">🥲</option>
+          <option value="yummy" className="userEmotionOption">😋</option>
+          <option value="study" className="userEmotionOption">🤓</option>
+          <option value="angry" className="userEmotionOption">😡</option>
+          <option value="sick" className="userEmotionOption">🤒</option>
 
+        </select>
         <h2>몸의 점수</h2>
         <input onChange={onChangeInput} placeholder="5점 만점" type="number" name="bodyScore" />
         <div className={styles.padding_10}>

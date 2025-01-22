@@ -6,9 +6,9 @@ const Modal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
   const { open, close} = props;
   const [scores, setScores] = useState(null);
-
+  const [emoji, setEmoji] = useState(null);
   function getDataFromJSONFile() {
-    return axios.get(`https://678f220a49875e5a1a90a2cf.mockapi.io/conditions/${2}`)
+    return axios.get(`https://678f220a49875e5a1a90a2cf.mockapi.io/conditions/${11}`)
         .then((response) => {
             //scores = response.data;
             //console.log(scores);
@@ -24,17 +24,43 @@ const Modal = (props) => {
   useEffect(() => {
     if (open) {
       getDataFromJSONFile();
+      setUserEmoji();
     }
+  
   }, [open]);
+
+  
+function setUserEmoji(){
+  if(scores?.userEmotion == "happy") {
+    setEmoji("😄");
+  } else if(scores?.userEmotion == "excitied") {
+    setEmoji("😆");
+  } else if(scores?.userEmotion == "cry") {
+    setEmoji("🥲");
+  } else if(scores?.userEmotion == "yummy") {
+    setEmoji("😋");
+  } else if(scores?.userEmotion == "study") {
+    setEmoji("🤓");
+  } else if(scores?.userEmotion == "angry") {
+    setEmoji("😡");
+  } else if(scores?.userEmotion == "sick") {
+    setEmoji("🤒");
+  }
+};
+
+
+
   
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? 'openModal modal' : 'modal'}>
-      {open ? (
+      {open && emoji !== null ? (
         <section>
           <header>
             <div className='modalHeaderBox'>
-              <div className='modalProfilePic'> </div>
+              <div className='modalProfilePic'> 
+                <span className="modalProfilePicture">{emoji ? emoji : "Loading..."}</span>
+              </div>
               <h2 className='modalProfileName'>{scores ? scores.userName : "Loading..."}</h2>
               <h5 className='modalProfileDate'>2025.01.21</h5>
               <button className="close" onClick={close}>
@@ -44,7 +70,7 @@ const Modal = (props) => {
           </header>
           <main>
             <span>몸 컨디션 : </span>
-            {[1,1,1,1].map(function(){
+            {[1,1,1].map(function(){
               return <span>⭐️</span>;
             })}
             <p>{scores ? scores.bodyReason : "Loading..."}</p>

@@ -36,17 +36,22 @@
 }
 .modalProfilePic{
   border-radius: 50%;
-  background-color: #999;
   width:70px;
   height:70px;
 }
 
+.modalProfilePicture{
+  font-size: 70px;
+  margin-bottom: 10px;
+
+}
+
 .modalProfileName{
-  padding-left: 30px;
+  padding-left: 50px;
 }
 
 .modalProfileDate{
-  padding-left: 130px;
+  padding-left: 100px;
   padding-top: 40px;
   margin:0px;
 }
