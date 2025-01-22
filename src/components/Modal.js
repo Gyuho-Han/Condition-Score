@@ -15,6 +15,7 @@ const Modal = (props) => {
 
             setScores(response.data); 
             console.log(response.data); 
+            setUserEmoji();
         })
         .catch((error) => {
             console.error("에러: ", error);
@@ -24,26 +25,26 @@ const Modal = (props) => {
   useEffect(() => {
     if (open) {
       getDataFromJSONFile();
-      setUserEmoji();
+
     }
   
   }, [open]);
 
   
 function setUserEmoji(){
-  if(scores?.userEmotion == "happy") {
+  if(scores?.userEmotion === "happy") {
     setEmoji("😄");
-  } else if(scores?.userEmotion == "excitied") {
+  } else if(scores?.userEmotion === "excitied") {
     setEmoji("😆");
-  } else if(scores?.userEmotion == "cry") {
+  } else if(scores?.userEmotion === "cry") {
     setEmoji("🥲");
-  } else if(scores?.userEmotion == "yummy") {
+  } else if(scores?.userEmotion === "yummy") {
     setEmoji("😋");
-  } else if(scores?.userEmotion == "study") {
+  } else if(scores?.userEmotion === "study") {
     setEmoji("🤓");
-  } else if(scores?.userEmotion == "angry") {
+  } else if(scores?.userEmotion === "angry") {
     setEmoji("😡");
-  } else if(scores?.userEmotion == "sick") {
+  } else if(scores?.userEmotion === "sick") {
     setEmoji("🤒");
   }
 };
@@ -54,7 +55,7 @@ function setUserEmoji(){
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? 'openModal modal' : 'modal'}>
-      {open && emoji !== null ? (
+      {open && scores !== null ? (
         <section>
           <header>
             <div className='modalHeaderBox'>
